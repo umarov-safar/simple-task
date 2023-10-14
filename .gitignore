@@ -1,0 +1,13 @@
+.env
+postgresql
+
+app/.phpunit.cache
+app/app/node_modules
+app/public/build
+app/public/hot
+app/public/storage
+app/storage/*.key
+app/vendor
+app/.env
+app/.phpunit.result.cache
+app/.vscode

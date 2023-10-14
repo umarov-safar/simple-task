@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  app:
+    container_name: app
+    build: 
+      context: ./app
+      dockerfile: Dockerfile
+    image: php8.1-fpm
+    volumes:
+      - ./app:/var/www
+    networks:
+      - app-network  
+  nginx:
+    image: nginx:1.25.2-alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports: 
+        - 8100:80
+    volumes: 
+        - ./app:/var/www
+        - ./nginx:/etc/nginx/conf.d
+    networks: 
+        - app-network
+  db:
+    container_name: pgsql
+    image: postgres
+    restart: unless-stopped
+    expose:
+     - "5432"
+    ports:
+      - "5433:5432"
+    volumes: 
+      - ./postgresql/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${DB_USERNAME:-example}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-example}
+      - POSTGRES_DB=${DB_DATABASE:-example}
+    networks:
+      - app-network
+  
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
