@@ -10,7 +10,9 @@ services:
     volumes:
       - ./app:/var/www
     networks:
-      - app-network  
+      - app-network
+    ports:
+      - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'  
   nginx:
     image: nginx:1.25.2-alpine
     container_name: nginx
