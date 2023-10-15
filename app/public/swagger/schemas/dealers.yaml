@@ -1,0 +1,42 @@
+ReadonlyProperties:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 10
+      description: ID дилера
+    created_at:
+      type: string
+      format: date-time
+      description: Дата создания дилера
+      example: "2023-10-16T11:27:10.000000Z"
+    updated_at:
+      type: string
+      format: date-time
+      description: Дата обновления дилера
+      example: "2023-10-16T11:27:10.000000Z"
+
+FillableProperties:
+  type: object
+  properties:
+    name:
+      type: string
+      example: Дилер 1
+      description: Название банка
+  required:
+    - name    
+      
+Dealer:
+  allOf:
+    - $ref: '#/ReadonlyProperties'     
+    - $ref: '#/FillableProperties'    
+
+
+DealerCreate:     
+  $ref: '#/FillableProperties'
+
+DealerResponse:
+  type: object
+  properties:
+    data:
+      $ref: '#/Dealer'

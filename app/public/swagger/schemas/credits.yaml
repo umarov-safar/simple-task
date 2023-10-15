@@ -1,0 +1,75 @@
+ReadonlyProperties:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 10
+      description: ID заявки
+    created_at:
+      type: string
+      format: date-time
+      description: Дата создания заявки
+      example: "2023-10-16T11:27:10.000000Z"
+    updated_at:
+      type: string
+      format: date-time
+      description: Дата обновления заявки
+      example: "2023-10-16T11:27:10.000000Z"
+  required:
+    - id
+    - created_at
+    - updated_at
+
+FillableProperties:
+  type: object
+  properties:
+    dealer_id:
+      type: integer
+      example: 3
+      description: ID заявки
+    dealer_employee:
+      type: string
+      example: Александр Сергеевич Пушкин 
+      description: Контактное лицо (сотрудник дилера)
+    credit_amount:
+      type: number
+      example: 30000
+      description: Сумма кредита
+    credit_term:
+      type: string
+      format: date-time
+      example: '2023-10-16T11:27:10.000000Z'
+      description: Срок кредита
+    interest_rate:
+      type: number
+      example: 2.5
+      description: Процентная ставка
+    reason_description:
+      type: string
+      example: Some reasen description
+      description: Описание причины кредита.
+    status:
+      description: Статус заявки
+      allOf:
+        - type: integer
+        - $ref: '../enums/credit_status.yaml'
+  required:
+    - status
+    - dealer_id
+    - dealer_employee
+    - credit_amount
+    
+Credit:
+  allOf:
+    - $ref: '#/ReadonlyProperties'     
+    - $ref: '#/FillableProperties'    
+
+
+CreditCreate:     
+  $ref: '#/FillableProperties'
+
+CreditResponse:
+  type: object
+  properties:
+    data:
+      $ref: '#/Credit'

@@ -4,25 +4,89 @@ info:
   version: 1.0.0
 servers:
   - url: http://localhost:8100/api/
+tags:
+  - name: dealers
+    description: Управление дилерами
+  - name: dealer-credits
+    description: Управление заявками дилерами
+  - name: banks
+    description: Управление банками
 paths:
-  /examples:
-    get:
-      tags:
-        - example
-      summary: Example path
-      description: Returns list of Dealers
-      responses:
-        '200':
-          description: List of Dealers
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: string
-                    exmaple: "List of dealers"
-                      
-                  
-        '404':
-          description: Route not founed
+  /dealers:
+    $ref: './schemas/path.yaml#/CreateAndListDealers'
+  /dealers/{id}:
+      $ref: './schemas/path.yaml#/DeleteDealer'
+
+  /dealer-credits:
+    $ref: './schemas/path.yaml#/CreateAndListDealerCredits'
+  /dealer-credits/{id}:
+    $ref: './schemas/path.yaml#/DealerCreditsCurrent'
+
+  /banks:
+    $ref: './schemas/path.yaml#/CreateAndListBanks'
+  /banks/{id}:
+      $ref: './schemas/path.yaml#/DeleteBank'
+  
+components:
+  parameters:
+    QueryInclude:
+      in: query
+      name: include
+      required: false
+      description: Связанные сущности для подгрузки, через запятую
+      schema:
+        type: string
+    PathId:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+      description: Числовой id
+      example: 1
+  schemas:
+    CreditStatusEnum:
+      $ref: './enums/credit_status.yaml'
+    EmptyDataResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          nullable: true
+        meta:
+          type: object
+      required:
+        - data
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: './errors.yaml#/ErrorResponse'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: './errors.yaml#/ErrorResponse'
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: './errors.yaml#/ErrorResponse'
+    AccessDenied:
+      description: Access denied
+      content:
+        application/json:
+          schema:
+            $ref: './errors.yaml#/ErrorResponse'
+    DeleteResponse:
+      description: Удаление выполнено
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EmptyDataResponse'
+    

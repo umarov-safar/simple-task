@@ -1,0 +1,42 @@
+ReadonlyProperties:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 10
+      description: ID банка
+    created_at:
+      type: string
+      format: date-time
+      description: Дата создания банка
+      example: "2023-10-16T11:27:10.000000Z"
+    updated_at:
+      type: string
+      format: date-time
+      description: Дата обновления банка
+      example: "2023-10-16T11:27:10.000000Z"
+
+FillableProperties:
+  type: object
+  properties:
+    name:
+      type: string
+      example: Sberbank
+      description: Название банка
+  required:
+    - name    
+      
+Bank:
+  allOf:
+    - $ref: '#/ReadonlyProperties'     
+    - $ref: '#/FillableProperties'    
+
+
+BankCreate:     
+  $ref: '#/FillableProperties'
+
+BankResponse:
+  type: object
+  properties:
+    data:
+      $ref: '#/Bank'

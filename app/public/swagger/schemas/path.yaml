@@ -1,0 +1,265 @@
+# Banks
+CreateAndListDealers:
+  post:
+    tags:
+      - dealers
+    operationId: store
+    summary: Запрос на создание нового дилера
+    description: Запрос на создание нового дилера
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './dealers.yaml#/DealerCreate'
+    responses:
+      "201":
+          content:
+            application/json:
+              schema:
+                $ref: './dealers.yaml#/DealerResponse'
+      "400":
+        $ref: "../index.yaml#/components/responses/BadRequest"
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound' 
+  get:
+    tags:
+      - dealers
+    operationId: index
+    summary: Список дилеров
+    description: Список дилеров
+    produces:
+      - application/json
+    parameters:
+      - $ref: '../index.yaml#/components/parameters/QueryInclude'
+    responses:
+      "200":
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: './dealers.yaml#/Dealer'
+                meta: 
+                  type: object
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound'
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
+
+DeleteDealer:
+  delete:
+    tags:
+      - dealers
+    operationId: delete
+    summary: Запрос на удаление дилера
+    description: Запрос на удаление дилера
+    parameters:
+      - $ref: '../index.yaml#/components/parameters/PathId'
+    responses:
+      "200":
+        $ref: "../index.yaml#/components/responses/DeleteResponse"
+      "400":
+        $ref: "../index.yaml#/components/responses/BadRequest"
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound'
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
+
+
+# ----------- Banks ------------
+
+CreateAndListBanks:
+  post:
+    tags:
+      - banks
+    operationId: store
+    summary: Запрос на создание нового банка
+    description: Запрос на создание нового банка
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './banks.yaml#/BankCreate'
+    responses:
+      "201":
+          content:
+            application/json:
+              schema:
+                $ref: './banks.yaml#/BankResponse'
+      "400":
+        $ref: "../index.yaml#/components/responses/BadRequest"
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound' 
+  get:
+    tags:
+      - banks
+    operationId: index
+    summary: Список банков
+    description: Список банков
+    produces:
+      - application/json
+    parameters:
+      - $ref: '../index.yaml#/components/parameters/QueryInclude'
+    responses:
+      "200":
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: './banks.yaml#/Bank'
+                meta: 
+                  type: object
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound'
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
+
+DeleteBank:
+  delete:
+    tags:
+      - banks
+    operationId: delete
+    summary: Запрос на удаление банка
+    description: Запрос на удаление банка
+    parameters:
+      - $ref: '../index.yaml#/components/parameters/PathId'
+    responses:
+      "200":
+        $ref: "../index.yaml#/components/responses/DeleteResponse"
+      "400":
+        $ref: "../index.yaml#/components/responses/BadRequest"
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound'
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
+
+# ---------- Dealer credit -------------
+
+CreateAndListDealerCredits:
+  post:
+    tags:
+      - dealer-credits
+    operationId: store
+    summary: Запрос на создание новой заявки на кредит
+    description: Запрос на создание новой заявки на кредит
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './credits.yaml#/CreditCreate'
+    responses:
+      "201":
+          content:
+            application/json:
+              schema:
+                $ref: './credits.yaml#/CreditResponse'
+      "400":
+        $ref: "../index.yaml#/components/responses/BadRequest"
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound'
+  get:
+    tags:
+      - dealer-credits
+    operationId: index
+    summary: Список заявки
+    description: Список заявки
+    produces:
+      - application/json
+    parameters:
+      - $ref: '../index.yaml#/components/parameters/QueryInclude'
+    responses:
+      "200":
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items: 
+                    $ref: './credits.yaml#/Credit'
+                meta:
+                  type: object
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound'
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
+DealerCreditsCurrent:
+  get:
+    tags:
+      - dealer-credits
+    operationId: show
+    summary: Просмотр заявку на кредит по ID
+    description: Просмотр заявку на кредит по ID
+    parameters:
+      - $ref: '../index.yaml#/components/parameters/PathId'
+      - $ref: '../index.yaml#/components/parameters/QueryInclude'
+    responses:
+      "200":
+        content:
+          application/json:
+            schema:
+              $ref: './credits.yaml#/CreditResponse'
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound'
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
+  patch:
+    tags:
+      - dealer-credits
+    operationId: update
+    summary: Запрос на обновление заявки на кредит
+    description: Запрос на обновление заявки на кредит
+    parameters:
+      - $ref: '../index.yaml#/components/parameters/PathId'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './credits.yaml#/CreditCreate'
+    responses:
+      "200":
+        content:
+          application/json:
+            schema:
+              $ref: './credits.yaml#/CreditResponse'
+      "400":
+        $ref: "../index.yaml#/components/responses/BadRequest"
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound'
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
+  delete:
+    tags:
+      - dealer-credits
+    operationId: delete
+    summary: Запрос на удаление заявки на кредит
+    description: Запрос на удаление заявки на кредит
+    parameters:
+      - $ref: '../index.yaml#/components/parameters/PathId'
+    responses:
+      "200":
+        $ref: "../index.yaml#/components/responses/DeleteResponse"
+      "400":
+        $ref: "../index.yaml#/components/responses/BadRequest"
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound'
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
