@@ -54,8 +54,7 @@ components:
         data:
           type: object
           nullable: true
-        meta:
-          type: object
+          example: null
       required:
         - data
   responses:
@@ -64,25 +63,25 @@ components:
       content:
         application/json:
           schema:
-            $ref: './errors.yaml#/ErrorResponse'
+            $ref: './errors.yaml#/Error'
     NotFound:
       description: Not Found
       content:
         application/json:
           schema:
-            $ref: './errors.yaml#/ErrorResponse'
+            $ref: './errors.yaml#/Error'
     ServerError:
       description: Internal Server Error
       content:
         application/json:
           schema:
-            $ref: './errors.yaml#/ErrorResponse'
+            $ref: './errors.yaml#/Error'
     AccessDenied:
       description: Access denied
       content:
         application/json:
           schema:
-            $ref: './errors.yaml#/ErrorResponse'
+            $ref: './errors.yaml#/Error'
     DeleteResponse:
       description: Удаление выполнено
       content:

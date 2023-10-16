@@ -3,7 +3,6 @@ CreateAndListDealers:
   post:
     tags:
       - dealers
-    operationId: store
     summary: Запрос на создание нового дилера
     description: Запрос на создание нового дилера
     requestBody:
@@ -27,7 +26,6 @@ CreateAndListDealers:
   get:
     tags:
       - dealers
-    operationId: index
     summary: Список дилеров
     description: Список дилеров
     produces:
@@ -56,7 +54,6 @@ DeleteDealer:
   delete:
     tags:
       - dealers
-    operationId: delete
     summary: Запрос на удаление дилера
     description: Запрос на удаление дилера
     parameters:
@@ -78,7 +75,6 @@ CreateAndListBanks:
   post:
     tags:
       - banks
-    operationId: store
     summary: Запрос на создание нового банка
     description: Запрос на создание нового банка
     requestBody:
@@ -102,7 +98,6 @@ CreateAndListBanks:
   get:
     tags:
       - banks
-    operationId: index
     summary: Список банков
     description: Список банков
     produces:
@@ -131,7 +126,6 @@ DeleteBank:
   delete:
     tags:
       - banks
-    operationId: delete
     summary: Запрос на удаление банка
     description: Запрос на удаление банка
     parameters:
@@ -152,7 +146,6 @@ CreateAndListDealerCredits:
   post:
     tags:
       - dealer-credits
-    operationId: store
     summary: Запрос на создание новой заявки на кредит
     description: Запрос на создание новой заявки на кредит
     requestBody:
@@ -176,7 +169,6 @@ CreateAndListDealerCredits:
   get:
     tags:
       - dealer-credits
-    operationId: index
     summary: Список заявки
     description: Список заявки
     produces:
@@ -204,7 +196,6 @@ DealerCreditsCurrent:
   get:
     tags:
       - dealer-credits
-    operationId: show
     summary: Просмотр заявку на кредит по ID
     description: Просмотр заявку на кредит по ID
     parameters:
@@ -223,7 +214,6 @@ DealerCreditsCurrent:
   patch:
     tags:
       - dealer-credits
-    operationId: update
     summary: Запрос на обновление заявки на кредит
     description: Запрос на обновление заявки на кредит
     parameters:
@@ -249,7 +239,6 @@ DealerCreditsCurrent:
   delete:
     tags:
       - dealer-credits
-    operationId: delete
     summary: Запрос на удаление заявки на кредит
     description: Запрос на удаление заявки на кредит
     parameters:
