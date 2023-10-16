@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin App\Models\Bank
+ * @mixin App\Models\Dealer
  */
-class BankResource extends JsonResource
+class DealerResource extends JsonResource
 {
-    
+
     public function toArray(Request $request): array
     {
         return [
@@ -20,5 +20,5 @@ class BankResource extends JsonResource
             'updated_at' => $this->updated_at,
         ];
     }
-    
+
 }

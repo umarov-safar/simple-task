@@ -27,21 +27,6 @@ class BankController
         return new BankResource($action->execute($request->validated()));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Bank $bank)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateBankRequest $request, Bank $bank)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

@@ -7,7 +7,7 @@ use App\Models\Bank;
 class CreateBankAction 
 {
 
-    public function execute(array $data)
+    public function execute(array $data): Bank
     {
         return Bank::create($data);
     }
