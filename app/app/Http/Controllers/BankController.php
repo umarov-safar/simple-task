@@ -7,6 +7,7 @@ use App\Http\Requests\StoreBankRequest;
 use App\Http\Requests\UpdateBankRequest;
 use App\Http\Resources\BankResource;
 use App\Models\Bank;
+use App\Http\Resources\EmptyResource;
 
 class BankController
 {
@@ -31,9 +32,9 @@ class BankController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($bank)
+    public function destroy(Bank $bank)
     {
-        Bank::findO3rFail($bank);
-        return response(['data' => 'Bank deleted successfully!']);
+        $bank->delete();
+        return new EmptyResource();
     }
 }

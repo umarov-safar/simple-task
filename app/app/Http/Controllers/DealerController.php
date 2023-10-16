@@ -7,6 +7,7 @@ use App\Http\Requests\StoreDealerRequest;
 use App\Http\Requests\UpdateDealerRequest;
 use App\Http\Resources\DealerResource;
 use App\Models\Dealer;
+use App\Http\Resources\EmptyResource;
 
 class DealerController 
 {
@@ -34,5 +35,6 @@ class DealerController
     public function destroy(Dealer $dealer)
     {
         $dealer->delete();
+        return new EmptyResource();
     }
 }
