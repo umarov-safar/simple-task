@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\DealerController;
+use App\Http\Controllers\DealerCreditController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('banks', BankController::class)->except(['show', 'update']);
 Route::apiResource('dealers', DealerController::class)->except(['show', 'update']);
+Route::apiResource('dealer-credits', DealerCreditController::class);
 
