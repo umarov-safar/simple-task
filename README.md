@@ -34,7 +34,7 @@ DB_PASSWORD=secret
 
 `docker compose up`
 
-#### Настройка laravel
+#### Laravel and NPM
 `docker compose exec app bash`
 
 `composer install`
@@ -45,6 +45,9 @@ DB_PASSWORD=secret
 
 `php artisan optimize`
 
+`npm install`
+
+`npm run build`
 
 #### Swagger docs url
 http://localhost:8100/docs/swagger
