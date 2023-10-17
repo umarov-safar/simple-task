@@ -51,3 +51,6 @@ DB_PASSWORD=secret
 
 #### Swagger docs url
 http://localhost:8100/docs/swagger
+
+#### Permmision
+`sudo chmod  o+w storage -R`
